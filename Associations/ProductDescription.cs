@@ -4,33 +4,33 @@ namespace Associations
 {
     public class ProductDescription
     {
-        private string article;
-        private string title;
-        private DateTime standardTime;
+        private string _article;
+        private string _title;
+        private DateTime _standardTime;
 
         public string Article
         {
-            get => article;
-            set => article = value;
+            get => _article;
+            set => _article = value;
         }
 
         public string Title
         {
-            get => title;
-            set => title = value;
+            get => _title;
+            set => _title = value;
         }
 
         public DateTime StandardTime
         {
-            get => standardTime;
-            set => standardTime = value;
+            get => _standardTime;
+            set => _standardTime = value;
         }
 
         public ProductDescription(string article, string title, DateTime standardTime)
         {
-            this.article = article;
-            this.title = title;
-            this.standardTime = standardTime;
+            this._article = article;
+            this._title = title;
+            this._standardTime = standardTime;
         }
 
         public override string ToString()
