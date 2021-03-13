@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Text;
 
 namespace Associations
@@ -52,21 +53,42 @@ namespace Associations
 
         public string BatchCategory()
         {
+            int countDefective = 0;
             for (int i = 0; i < Products.Count; i++)
             {
                 if (Products[i].IsDefective == true)
                 {
-                    
+                    countDefective++;
+                }
+            }
+            double countDefectiveProducts = (Products.Count/100)/countDefective;
+            bool workTime=false;
+            for (int i = 0; i < Products.Count; i++)
+            {
+                if (Products[i].WorkLogEntry.TimeSpent > Products[i].ProductDescription.StandardTime)
+                {
+                    workTime = false;
+                }
+                else
+                {
+                    workTime = true;
                 }
             }
 
-            return null;
+            if (workTime == false && countDefective <= 3)
+            {
+                return "1 категория";
+            }
+            else
+            {
+                return "2 категория";
+            }
         }
 
 
         public override string ToString()
         {
-            return $"Штрих код - {Barcode}, Дата выпуска {ReleaseDate},Продукты - \n{Show()}";
+            return $"Штрих код - {Barcode}, Дата выпуска {ReleaseDate},Продукты - \n{Show()}, {BatchCategory()}";
             // $"Серийный номер - {Product.Barcode}, Датя/Время выпуска - {Product.ReleaseDateTime}, Брак - {Product.IsDefective}, " +
             // $"Артикул - {Product.ProductDescription.Article}, Наименование - {Product.ProductDescription.Title}, " +
             // $"Норма рабочего времени на изготовление {Product.ProductDescription.StandardTime.Hour}, " +

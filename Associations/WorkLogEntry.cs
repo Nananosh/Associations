@@ -6,7 +6,7 @@ namespace Associations
     {
         private DateTime _dateTime;
         private String _Responsible;
-        private TimeSpan _timeSpent;
+        private DateTime _timeSpent;
         private String _description;
 
         public DateTime DateTime
@@ -21,7 +21,7 @@ namespace Associations
             set => _Responsible = value;
         }
 
-        public TimeSpan TimeSpent
+        public DateTime TimeSpent
         {
             get => _timeSpent;
             set => _timeSpent = value;
@@ -33,7 +33,7 @@ namespace Associations
             set => _description = value;
         }
 
-        public WorkLogEntry(DateTime dateTime, string responsible, TimeSpan timeSpent, string description)
+        public WorkLogEntry(DateTime dateTime, string responsible, DateTime timeSpent, string description)
         {
             this._dateTime = dateTime;
             _Responsible = responsible;

@@ -10,7 +10,7 @@ namespace Associations
         private DateTime _releaseDateTime;
         private bool _isDefective;
         private ProductDescription _productDescription;
-        private List<WorkLogEntry> _workLogEntries;
+        private WorkLogEntry _workLogEntries;
 
         public int Barcode
         {
@@ -36,42 +36,42 @@ namespace Associations
             set => _productDescription = value;
         }
 
-        public List<WorkLogEntry> WorkLogEntries
+        public WorkLogEntry WorkLogEntry
         {
             get => _workLogEntries;
             set => _workLogEntries = value;
         }
 
-        public Product(int barcode, DateTime releaseDateTime, bool isDefective, ProductDescription productDescription)
+        public Product(int barcode, DateTime releaseDateTime, bool isDefective, ProductDescription productDescription, WorkLogEntry workLogEntries)
         {
             this._barcode = barcode;
             this._releaseDateTime = releaseDateTime;
             this._isDefective = isDefective;
             this._productDescription = productDescription;
-            this._workLogEntries = new List<WorkLogEntry>();
+            this._workLogEntries = workLogEntries;
         }
-        public void AddWorkLongEntry(WorkLogEntry workLogEntry)
-        {
-            WorkLogEntries.Add(workLogEntry);
-        }
-        public string ShowTasks()
-        {
-            StringBuilder builder = new StringBuilder();
-            for (int i = 0; i < WorkLogEntries.Count; i++)
-            {
-                builder.Append(WorkLogEntries[i]+ Environment.NewLine);
-            }
-            return builder.ToString();
-        }
+        // public void AddWorkLongEntry(WorkLogEntry workLogEntry)
+        // {
+        //     WorkLogEntries.Add(workLogEntry);
+        // }
+        // public string ShowTasks()
+        // {
+        //     StringBuilder builder = new StringBuilder();
+        //     for (int i = 0; i < WorkLogEntries.Count; i++)
+        //     {
+        //         builder.Append(WorkLogEntries[i]+ Environment.NewLine);
+        //     }
+        //     return builder.ToString();
+        // }
 
         public override string ToString()
         {
             return $"Серийный номер - {Barcode}, Датя/Время выпуска - {ReleaseDateTime}, Брак - {IsDefective}, " +
                    $"Артикул - {ProductDescription.Article}, Наименование - {ProductDescription.Title}, " +
                    $"Норма рабочего времени на изготовление {ProductDescription.StandardTime}," +
-                   $"Журнал - {ShowTasks()}";
-            //$"Дата и время внесения записи {WorkLogEntry.DateTime}, Рабочий выполнявший работу {WorkLogEntry.Responsible1}," +
-            //$"Время работ {WorkLogEntry.TimeSpent}, Описание работ {WorkLogEntry.Description}";
+                   // $"Журнал - {ShowTasks()}";
+                   $"Дата и время внесения записи {WorkLogEntry.DateTime}, Рабочий выполнявший работу {WorkLogEntry.Responsible1}," +
+                   $"Время работ {WorkLogEntry.TimeSpent}, Описание работ {WorkLogEntry.Description}";
         }
     }
 }
